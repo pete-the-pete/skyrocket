@@ -29,7 +29,7 @@ function lazyInjectWorker(name) {
       return instance;
     }
 
-    return owner.lookup(worker);
+    return owner.lookup(`worker:${worker}`);
   };
 
   return computed(fn);
