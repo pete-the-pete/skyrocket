@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import { Worker } from 'skyrocket';
+import api from './contract';
 
-const {
-  Object: Obj,
-  Evented
-  } = Ember;
-
-export default Obj.extend(Evented, {
-  _isWorkerFactory: true
+export default Worker.extend({
+  'contract': api,
+  fetch() {
+    console.log('totally called fetch');
+  }
 });

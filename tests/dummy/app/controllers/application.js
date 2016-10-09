@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  dataStore: Ember.inject.worker('data-store'),
+  dataStore: Ember.inject.worker('data-store:one'),
 
   actions: {
 

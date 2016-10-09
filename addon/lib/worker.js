@@ -1,15 +1,11 @@
 import Ember from 'ember';
+import SkyrocketObject from '../-private/object/index';
 
-const {
-  Object: Obj,
-  Evented
-  } = Ember;
-
-export default Ember.Object.extend({
-  'interface': null,
+export default SkyrocketObject.extend({
+  contract: null,
   _isWorkerFactory: true,
 
-  _features: inject.service('worker-features'),
+  _features: Ember.inject.service('worker-features'),
 
   _connect() {},
 

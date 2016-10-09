@@ -22,7 +22,7 @@ module.exports = {
   },
 
   treeForPublic: function() {
-    this.workerTree = workerTree.call(this, this._trueApp);
+    this.workerTree = treeForWorkers.call(this, this._trueApp);
     return this.workerTree;
   },
 
