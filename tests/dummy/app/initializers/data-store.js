@@ -5,16 +5,14 @@ just to get a POC figured out.
 @public
 *****************************************************************************/
 
-import { Contract } from 'skyrocket';
+import { Contract, Primitives } from 'skyrocket';
 
 export function initialize(application) {
   const DW = Contract.extend({
     interfaceName: 'data-store',
-    burritos() {
-    },
 
-    fetch() {
-      console.log('here');
+    upload: function() {
+      return Primitives.method.call(this, 'upload', true, ...arguments);
     }
   });
 

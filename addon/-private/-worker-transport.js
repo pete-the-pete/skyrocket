@@ -1,4 +1,5 @@
 import Global from './utils/global';
+import Primitives from '../primitives/index';
 
 const SYSTEM_TYPE = '-worker';
 let REQUEST_INC = 0;
@@ -11,7 +12,7 @@ export default class Transport {
     this.isWorker = !src;
     this.options = options;
 
-    this.callbacks = new WeakMap();
+    this.callbacks = new Map();
 
     this.connect();
   }
@@ -30,22 +31,13 @@ export default class Transport {
     });
   }
 
-  registerEvent() {}
-
-  registerTask() {}
-
-
-
-
-
-
-
-
   send() {
-    this._send({
-
-    });
+    this._send(...arguments);
   }
+
+/*  registerEvent() {}
+
+  registerTask() {}*/
 
   sendWithCallback(...args) {
     let cb = args.pop();
@@ -59,11 +51,15 @@ export default class Transport {
   }
 
   _send() {
-    this.src.postMessage(...arguments);
+    this.src.postMessage([...arguments]);
   }
 
   _receive(event) {
-
+    let primitive = event.data.shift();
+    if (primitive.type === 'method') {
+      console.log(event.data);
+      Primitives.method.call(this.options.impl, primitive.name, false, ...event.data);
+    }
   }
 
   _registerCallback(id, callback) {

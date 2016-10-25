@@ -8,6 +8,8 @@ export default Ember.Controller.extend({
     startUpload() {
       this.get('dataStore').upload({
         img: 'file://example.png'
+      }).then((x) => {
+        console.log('x');
       });
     },
 
